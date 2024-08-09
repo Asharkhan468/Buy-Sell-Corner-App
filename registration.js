@@ -93,7 +93,7 @@ registerBtn.addEventListener('click' , (event)=>{
     })
     .catch((error) => {
       const errorMessage = error.message;
-      console.log(errorMessage);
+      alert(errorMessage)
     });
 
   
