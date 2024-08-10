@@ -89,7 +89,7 @@ registerBtn.addEventListener('click' , (event)=>{
           console.log(error);
         });
 
-        window.location="index.html"
+        window.location="login.html"
     })
     .catch((error) => {
       const errorMessage = error.message;
