@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>BUY / SELL CORNER</title>
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -28,30 +28,11 @@
         </div>
       </div>
     </div>
-   <div class="dropdown dropdown-end">
-      <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
-        <div class="w-10 rounded-full">
-          <img
-            alt="Tailwind CSS Navbar component" id="user-profile"
-            src="" />
-        </div>
-      </div>
-      <ul
-        tabindex="0"
-        class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-        <li>
-          <a class="justify-between">
-            Profile
-            <span class="badge">New</span>
-          </a>
-        </li>
-        <li><a>Settings</a></li>
-        <li><a id="logout-btn">Logout</a></li>
-      </ul>
-    </div>
+   <div id="div"></div>
     
   </div>
 </div>
+
 
 
      <!--Navbar ended-->  
@@ -60,15 +41,59 @@
      
      <!--search button started--> 
 
-     <div class="text-center">
+     <div class="text-center mx-[12px]">
       <input
   type="text"
-  placeholder="Type here"
-  class="input input-bordered input-primary w-full max-w-6xl mt-3" />
+  placeholder="Search..."
+  class="input input-bordered input-[#fff8] w-full max-w-6xl mt-8" />
 
      </div>
 
      <!--search button ended--> 
+
+
+
+        <!--cards started-->
+
+
+        <div class="mx-[8rem] mt-[40px]">
+          <h2 class="text-3xl font-bold">Products</h2>
+        </div>
+
+        
+
+        <div class="flex justify-around mx-[50px] mt-[40px] flex-wrap">
+
+
+
+   <div class="card bg-base-100 w-[20rem] shadow-xl">
+  <figure>
+    <img
+      src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
+      alt="Shoes" />
+  </figure>
+  <div class="card-body">
+    <h2 class="card-title">Shoes!</h2>
+    <p>If a dog chews shoes whose shoes does he choose?</p>
+    <div class="card-actions justify-end">
+      <p class="mt-[10px] font-bold">Rs 40000</p>
+      <button class="btn btn-secondary">MORE INFO</button>
+    </div>
+  </div>
+</div>
+
+
+
+        </div>
+
+
+        
+
+
+
+
+        <!--cards ended-->
+
 
 
 

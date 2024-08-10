@@ -6,22 +6,58 @@ import { collection, query, where, getDocs } from "https://www.gstatic.com/fireb
 
 import { auth ,db  } from "./config.js";
 
-const userProfile = document.querySelector("#user-profile");
+
+const div = document.querySelector('#div')
+
+//login button
+
+
+ 
 
 onAuthStateChanged(auth, (user) => {
   if (user) {
     const uid = user.uid;
-
     async function getData(){
       
 const q = query(collection(db, "users"), where("userId", "==", uid));
 
 const querySnapshot = await getDocs(q);
 querySnapshot.forEach((doc) => {
-  // doc.data() is never undefined for query doc snapshots
- let image = doc.data().userImage
- userProfile.src=`${image}`
- 
+  div.innerHTML += `<div class="dropdown dropdown-end">
+      <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
+        <div class="w-10 rounded-full">
+          <img
+            alt="Profile" id="user-profile"
+            src="${doc.data().userImage}" />
+        </div>
+      </div>
+      <ul
+        tabindex="0"
+        class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+        <li>
+          <a class="justify-between">
+            Profile
+            <span class="badge">New</span>
+          </a>
+        </li>
+        <li><a>Settings</a></li>
+        <li><a href="post ads.html">Post Ads</a></li>
+        <li><a id="logout-btn">Logout</a></li>
+      </ul>
+    </div>`;
+
+  //Logout user
+
+  document.querySelector("#logout-btn").addEventListener("click", () => {
+    signOut(auth)
+      .then(() => {
+        alert("You have sucessfully logout!");
+        window.location = "login.html";
+      })
+      .catch((error) => {
+        alert(err);
+      });
+  });
 });
     }    
 
@@ -30,7 +66,10 @@ querySnapshot.forEach((doc) => {
      
 
   } else {
-    console.log('user login nhi hy!');
+   div.innerHTML=`<button class="btn btn-warning" id="login-btn">LOGIN</button>`
+   document.getElementById("login-btn").addEventListener("click", () => {
+     window.location.href = "login.html";
+   });
     
 
   }
@@ -38,17 +77,5 @@ querySnapshot.forEach((doc) => {
 
 
 
-//Logout user
 
-
- document.querySelector('#logout-btn').addEventListener('click' , ()=>{
-  signOut(auth)
-    .then(() => {
-      alert('You have sucessfully logout!')
-      window.location="login.html"
-    })
-    .catch((error) => {
-     alert(error)
-    });
-
- })
+ 
