@@ -28,8 +28,26 @@
         </div>
       </div>
     </div>
-    <div id="div">
-
+   <div class="dropdown dropdown-end">
+      <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
+        <div class="w-10 rounded-full">
+          <img
+            alt="Tailwind CSS Navbar component" id="user-profile"
+            src="" />
+        </div>
+      </div>
+      <ul
+        tabindex="0"
+        class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+        <li>
+          <a class="justify-between">
+            Profile
+            <span class="badge">New</span>
+          </a>
+        </li>
+        <li><a>Settings</a></li>
+        <li><a id="logout-btn">Logout</a></li>
+      </ul>
     </div>
     
   </div>
@@ -37,6 +55,26 @@
 
 
      <!--Navbar ended-->  
+
+
+     
+     <!--search button started--> 
+
+     <div class="text-center">
+      <input
+  type="text"
+  placeholder="Type here"
+  class="input input-bordered input-primary w-full max-w-6xl mt-3" />
+
+     </div>
+
+     <!--search button ended--> 
+
+
+
+
+
+
 
     <script src="https://cdn.tailwindcss.com"></script> 
     <script type="module" src="app.js"></script>
