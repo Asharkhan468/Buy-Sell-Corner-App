@@ -4,7 +4,10 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
 import { collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
 
+
 import { auth ,db  } from "./config.js";
+
+let ads = [] //initialize an array for store ads from the database
 
 
 const div = document.querySelector('#div')
@@ -74,6 +77,102 @@ querySnapshot.forEach((doc) => {
 
   }
 });
+
+
+
+
+async function getData(){
+  const querySnapshot = await getDocs(collection(db, "user-ads"));
+querySnapshot.forEach((doc) => {
+  ads.push(doc.data());
+  console.log(ads);
+
+  const card = document.querySelector("#div-cards");
+
+  function renderCard(){
+    card.innerHTML='';
+
+    ads.map((item)=>{
+
+      card.innerHTML += `<div class="card bg-base-100 w-[20rem] shadow-xl mt-6">
+   <figure>
+     <img
+       src="${item.productImage}"
+      alt="Shoes" />
+  </figure>
+   <div class="card-body">
+     <h2 class="card-title">${item.productTitle}</h2>
+     <p>${item.productDescription}</p>
+     <div class="card-actions justify-end">
+       <p class="mt-[10px] font-bold">Rs ${item.productPrice}</p>
+       <button class="btn btn-secondary">MORE INFO</button>
+     </div>
+   </div>
+ </div>`;
+
+
+
+     
+      
+      
+
+    })
+
+
+  }
+
+  renderCard()
+
+   
+  
+  
+  
+  
+  
+  
+});
+}
+
+
+getData()
+
+
+//render data in a card from the firestore
+
+
+
+// function renderAds(){
+
+//   for (let i = 0; i < ads.length; i++) {
+//     console.log(i);
+
+//    
+//   }
+
+// }
+
+// renderAds()
+
+
+
+
+ 
+
+ 
+ 
+  
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
