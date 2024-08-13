@@ -13,7 +13,7 @@ import {
   createUserWithEmailAndPassword,
 } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
 
-import { ref , storageRef , db , auth } from "./config.js";
+import { ref ,storage , db , auth } from "./config.js";
 
 
 //Get User Data from HTML to JavaScript
@@ -45,6 +45,8 @@ registerBtn.addEventListener('click' , (event)=>{
       console.log(user);
 
       //Upload a file on storage
+
+      const storageRef = ref(storage, profile.files[0].name);
 
       uploadBytes(storageRef, profile.files[0])
         .then((snapshot) => {

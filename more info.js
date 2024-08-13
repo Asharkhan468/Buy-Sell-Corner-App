@@ -2,23 +2,16 @@ import {
   onAuthStateChanged,
   signOut,
 } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
-import { collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+import {
+  collection,
+  query,
+  where,
+  getDocs,
+} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
 
+import { auth, db } from "./config.js";
 
-import { auth ,db  } from "./config.js";
-
-let ads = [] //initialize an array for store ads from the database
-
-
-
-
-
-
-
-let moreInfo=[]
-
-
-const div = document.querySelector('#div')
+let ads = []; //initialize an array for store ads from the database
 
 
 
@@ -89,102 +82,3 @@ querySnapshot.forEach((doc) => {
 });
 
 
-
-
-async function getData(){
-  const querySnapshot = await getDocs(collection(db, "user-ads"));
-querySnapshot.forEach((doc) => {
-  ads.push(doc.data());
-  console.log(ads);
-
-  const card = document.querySelector("#div-cards");
-
-  card.innerHTML += `<p class="text-[#000]">No Ads Posted</p>`;
-
-  function renderCard(){
-    card.innerHTML='';
-
-    ads.map((item)=>{
-
-      card.innerHTML += `<div class="card bg-base-100 w-[20rem] shadow-xl mt-6 border-solid border-[#ced4da] border">
-   <figure>
-     <img
-       src="${item.productImage}"
-      alt="Shoes" />
-  </figure>
-   <div class="card-body">
-     <h2 class="card-title">${item.productTitle}</h2>
-     <p>${item.productDescription}</p>
-     <div class="card-actions justify-end">
-       <p class="mt-[10px] font-bold">Rs ${item.productPrice}</p>
-       <button class="btn btn-secondary" id="more-info-btn">MORE INFO</button>
-     </div>
-   </div>
- </div>`;
-
-
-
-     
-      
-      
-
-    })
-
-
-  }
-
-  renderCard()
-
-
-
-
-
-  document.querySelector("#more-info-btn").addEventListener("click", () => {
-    window.location.href = "more info.html";
-  });
-
-
-   
-  
-  
-  
-  
-  
-  
-});
-}
-
-
-getData()
-
-
-
-
-
-
-
-
-
-
- 
-
- 
- 
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 

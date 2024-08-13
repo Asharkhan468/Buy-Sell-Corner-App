@@ -69,9 +69,24 @@
             <div class="mx-[20px] sm:mx-[60px] md:mx-[80px] lg:mx-[90px] mt-[50px] ">
             <input type="text" placeholder="Product Title" class="input input-bordered w-full max-w-9xl mt-6" id="title" required/>
             <input type="text" placeholder="Product Description" class="input input-bordered w-full max-w-8xl mt-6" id="description" required />
+             <input type="text" placeholder="Product Brand" class="input input-bordered w-full max-w-8xl mt-6" id="brand" required />
+             <select id="condition" class="select select-bordered w-full max-w-8xl mt-6">
+      <option disabled selected >Select Product Condition</option>
+      <option value="New">New</option>
+      <option value="Used">Used</option>
+    </select required><br>
+
+      <select id="delievery" class="select select-bordered w-full max-w-8xl mt-6">
+      <option disabled selected >Available for Delievery</option>
+      <option value="yes">Yes</option>
+      <option value="No">No</option>
+    </select required><br>
             <input type="number" placeholder="Enter Price" class="input input-bordered w-full max-w-8xl mt-6" id="price" required />
             <input type="text" placeholder="Enter your Name" class="input input-bordered w-full max-w-8xl mt-6" id="name" required />
             <input type="number" placeholder="Enter Your Contact Number" class="input input-bordered w-full max-w-8xl mt-6" id="contact-number" required />
+    
+
+   
             
 
             <button type="submit" class="btn btn-info mt-7 text-[#fff]" id="post-btn">POST NOW</button>
@@ -86,6 +101,23 @@
 
 
           <!--Post Ads ended-->  
+
+
+                    <!--Pop up modal-->  
+
+
+                    <div id="pop-up-ad">
+                      
+                    </div>
+
+
+
+                    <!--Pop up modal-->  
+
+
+
+
+
 
 
 

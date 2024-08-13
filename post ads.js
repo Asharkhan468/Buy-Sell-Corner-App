@@ -87,6 +87,9 @@ const description = document.querySelector('#description');
 const price = document.querySelector('#price');
 const userName = document.querySelector('#name');
 const number = document.querySelector("#contact-number");
+const delievery = document.querySelector("#delievery");
+const condition = document.querySelector("#condition");
+const brand = document.querySelector("#brand");
 const form = document.querySelector('#form')
 
 
@@ -94,10 +97,14 @@ const form = document.querySelector('#form')
 form.addEventListener('submit' , (event)=>{
   event.preventDefault()
 
+  console.log(condition.value , delievery.value);
+  
+  
+
 
   //Upload an image to the storage
 
-  const storageRef = ref(storage, "ad-image");
+  const storageRef = ref(storage, adImage.files[0].name);
 
 
   uploadBytes(storageRef, adImage.files[0])
@@ -107,7 +114,7 @@ form.addEventListener('submit' , (event)=>{
 
     //get the link of uploaded image
 
-    getDownloadURL(ref(storage))
+    getDownloadURL(ref(storageRef))
       .then((url) => {
         console.log("url==>", url);
 
@@ -119,16 +126,42 @@ form.addEventListener('submit' , (event)=>{
     productDescription: description.value,
     productPrice: parseInt(price.value),
     ownerName:userName.value,
-    ownerNumber: number.value
+    ownerNumber: number.value,
+    delievery:delievery.value,
+    condition:condition.value,
+    productBrand:brand.value,
+
   });
 
   
    console.log("Document written with ID: ", docRef.id);
+
+   //popup sucess modal for ad posted
+
+   const popUpAd = document.querySelector("#pop-up-ad");
+
+   popUpAd.innerHTML += `
+<label for="my_modal_7" class="btn">open modal</label>
+
+
+<input type="checkbox" id="my_modal_7" class="modal-toggle" />
+<div class="modal" role="dialog">
+  <div class="modal-box">
+    <h3 class="text-lg font-bold">Hello!</h3>
+    <p class="py-4">This modal works with a hidden checkbox!</p>
+  </div>
+  <label class="modal-backdrop" for="my_modal_7">Close</label>
+</div>`;
+
+
    title.value=""
    description.value=""
    price.value=""
    userName.value=""
    number.value=""
+   delievery.value=""
+   condition.value=""
+   brand.value=""
 } catch (e) {
   console.error("Error adding document: ", e);
 }
