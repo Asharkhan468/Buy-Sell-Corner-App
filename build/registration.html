@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+
+    <!--Navbar started--> 
+    
+    <div class="navbar bg-[#3869fe] text-[#fff] w-[100%]">
+  <div class="flex-1">
+    <a class="btn btn-ghost text-xl">Buy / Sells Corner</a>
+  </div>
+  <div class="flex-none">
+    <div class="dropdown dropdown-end">
+    </div>
+    <div class="dropdown dropdown-end">
+      <ul
+        tabindex="0"
+        class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+        <li>
+          <a class="justify-between">
+            Profile
+            <span class="badge">New</span>
+          </a>
+        </li>
+        <li><a>Settings</a></li>
+        <li><a>Logout</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+    <!--Navbar ended-->   
+
+
+
+      <!--login form started-->
+
+        
+        
+        <div class="flex justify-center m-[10vh]">
+
+           
+
+
+
+
+            <form id="form">
+
+        
+      
+
+            <div>
+                <h1 class="text-center text-3xl font-bold">REGISTER</h1>
+            </div>
+
+
+
+    <div class="items-center justify-center border rounded-3xl px-[18px] h-[auto] w-[100%] bg-[#ffeef2] mt-3">
+
+
+        <label class="form-control w-full max-w-xs mt-5">
+  <input type="text" placeholder="First Name" id="first-name" class="input input-bordered max-w-sm w-[20rem] placeholder:text-[#208b3a]"/>
+ 
+</label>
+
+
+<label class="form-control w-full max-w-xs mt-5">
+  <input type="text" placeholder="Last Name" id="last-name" class="input input-bordered max-w-sm w-[20rem] placeholder:text-[#208b3a]" />
+ 
+</label>
+
+        <label class="form-control w-full max-w-xs mt-5">
+  <input type="email" placeholder="Enter your Email" id="email" class="input input-bordered max-w-sm w-[20rem]" />
+ 
+</label>
+
+     
+    <label class="form-control w-full max-w-xs mt-3">
+  <input type="password" id="password" placeholder="Enter your Password" class="input input-bordered max-w-sm w-[20rem]" />
+ 
+</label>
+
+
+<input type="file" id="input-file" class="file-input file-input-bordered file-input-info w-full max-w-xs mt-5" />
+
+
+
+<div class="text-center mt-3">
+    <button type="submit" class="btn bg-[#006bfd] mt-4 text-[#fff]" id="register-btn">REGISTER</button>
+    
+</div>
+
+<div class="mt-5 text-center">
+    <a class="text-[#006bfd]" href="./login.html">ALREADY USER? PLEASE LOGIN</a>
+</div>
+
+</div>
+
+
+</form>
+
+            
+        </div>
+
+
+        
+
+
+        <!--login form ended-->    
+
+
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script type="module" src="registration.js"></script>  
+</body>
+</html>

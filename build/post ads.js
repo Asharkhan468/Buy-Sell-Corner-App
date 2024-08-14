@@ -90,30 +90,20 @@ const number = document.querySelector("#contact-number");
 const delievery = document.querySelector("#delievery");
 const condition = document.querySelector("#condition");
 const brand = document.querySelector("#brand");
-const form = document.querySelector('#form');
-const postBtn = document.querySelector('#post-btn');
-
-
+const form = document.querySelector('#form')
 
 
 
 form.addEventListener('submit' , (event)=>{
   event.preventDefault()
 
- 
   
-postBtn.innerHTML += `<button type="button" class="bg-indigo ..." disabled>
-  <svg class="motion-reduce:hidden animate-spin ..." viewBox="0 0 24 24"><!-- ... --></svg>
-  Processing...
-</button>`;
   
+
 
   //Upload an image to the storage
 
   const storageRef = ref(storage, adImage.files[0].name);
-
-
-  
 
 
   uploadBytes(storageRef, adImage.files[0])
@@ -147,8 +137,6 @@ postBtn.innerHTML += `<button type="button" class="bg-indigo ..." disabled>
 
 
    my_modal_2.showModal();
-
-  
 
   //  window.location="index.html"
 
