@@ -148,13 +148,17 @@ postBtn.innerHTML += `<button type="button" class="bg-indigo ..." disabled>
 
    my_modal_2.showModal();
 
-  
-
-  //  window.location="index.html"
+   setTimeout(()=>{
+    my_modal_2.style.display='none';
+   }, 8000)
 
    
-
-
+   
+   
+   
+   
+   
+   
    title.value=""
    description.value=""
    price.value=""
@@ -163,8 +167,9 @@ postBtn.innerHTML += `<button type="button" class="bg-indigo ..." disabled>
    delievery.value=""
    condition.value=""
    brand.value=""
-} catch (e) {
-  console.error("Error adding document: ", e);
+   window.location.href="index.html"
+  } catch (e) {
+    console.error("Error adding document: ", e);
 }
         }
 

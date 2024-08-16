@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 
 </head>
 <body>
@@ -13,11 +14,26 @@
     
     <div class="navbar bg-[#3869fe] text-[#fff]">
   <div class="flex-1">
-    <a class="btn btn-ghost text-xl">Buy / Sells Corner</a>
+    <a class="btn btn-ghost text-xl" href="./index.html">Buy / Sells Corner</a>
   </div>
 </div>
 
-    <!--Navbar ended-->    
+    <!--Navbar ended--> 
+    
+    
+    <!--Invalid crediential alert started--> 
+
+    <div id="invalid-alert">
+      
+    </div>
+
+
+
+    <!--Invalid crediential alert ended--> 
+
+
+
+
 
 
 
@@ -50,7 +66,7 @@
   <div class="label">
     <span class="label-text font-bold">Email</span>
   </div>
-  <input type="email" placeholder="Enter your Email" id="email" class="input input-bordered max-w-xs w-96" />
+  <input type="email" placeholder="Enter your Email" id="email" class="input input-bordered max-w-xs w-96 p-[25px]" />
  
 </label>
 
@@ -59,14 +75,14 @@
   <div class="label">
     <span class="label-text font-bold">Password</span>
   </div>
-  <input type="password" id="password" placeholder="Enter your Password" class="input input-bordered w-96 max-w-xs " />
+  <input type="password" id="password" placeholder="Enter your Password" class="input input-bordered w-96 max-w-xs p-[25px]" />
  
 </label>
 
 
 
 <div class="text-center mt-3">
-    <button type="submit" class="btn bg-[#006bfd] mt-4" id="login-btn">LOGIN</button>
+    <button type="submit" class="btn bg-[#006bfd] mt-4 text-[#fff] hover:bg-[#006bfd]" id="login-btn">LOGIN</button>
     
 </div>
 
@@ -86,8 +102,18 @@
         
 
 
-        <!--login form ended-->    
+        <!--login form started-->
 
+
+        
+        
+        
+
+
+        <!--login form ended-->
+        
+        
+       
 
 
 

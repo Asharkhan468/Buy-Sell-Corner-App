@@ -64,8 +64,8 @@ querySnapshot.forEach((doc) => {
   document.querySelector("#logout-btn").addEventListener("click", () => {
     signOut(auth)
       .then(() => {
-        alert("You have sucessfully logout!");
-        window.location = "login.html";
+          my_modal_2.showModal();
+        // window.location = "login.html";
       })
       .catch((error) => {
         alert(err);
@@ -108,7 +108,7 @@ querySnapshot.forEach((doc) => {
 
       card.innerHTML += `<div class="card bg-base-100 w-[20rem] shadow-xl mt-6 border-solid border-[#ced4da] border">
    <figure>
-     <img
+     <img class="max-w-[100%] h-[320px] object-cover"
        src="${item.productImage}"
       alt="Shoes" />
   </figure>
@@ -124,11 +124,58 @@ querySnapshot.forEach((doc) => {
 
 
 
+ const moreInfoBtn = document.querySelectorAll("#more-info-btn");
+
+ moreInfoBtn.forEach((btn, index) => {
+   btn.addEventListener("click", () => {
+    moreInfo=[]
+     moreInfo.push(ads[index]);
+
+     localStorage.setItem('ads-info' , JSON.stringify(moreInfo[0]))
+
+     //alert user to login for view more info
+
+     const loginAlert = document.querySelector("#login-alert");
+
+     onAuthStateChanged(auth, (user) => {
+      if(user){
+        window.location.href = "more info.html";
+      }else{
+        loginAlert.innerHTML = my_modal_1.showModal()
+      }
+     })
+   });
+ });
+
+
+
      
       
       
 
     })
+
+
+
+    //Ok button in the login alert popup functionality started
+
+    const okBtn = document.querySelector('#btn-ok');
+
+    okBtn.addEventListener('click' , ()=>{
+      window.location.href="login.html"
+    })
+
+
+
+
+    //Ok button in the login alert popup functionality ended
+
+
+
+
+
+
+    
 
 
   }
@@ -139,9 +186,7 @@ querySnapshot.forEach((doc) => {
 
 
 
-  document.querySelector("#more-info-btn").addEventListener("click", () => {
-    window.location.href = "more info.html";
-  });
+ 
 
 
    
@@ -156,6 +201,87 @@ querySnapshot.forEach((doc) => {
 
 
 getData()
+
+
+
+
+//Logout confirmation
+
+
+
+ //Logout user
+
+
+ const modal = document.getElementById("logoutModal");
+ const logoutBtn = document.querySelector("#logout-btn");
+ const closeBtn = document.querySelector(".logout-close-btn");
+ const confirmLogout = document.getElementById("confirmLogout");
+ const cancelLogout = document.getElementById("cancelLogout");
+
+
+
+
+
+// Show modal
+logoutBtn.addEventListener('click' , ()=>{
+
+  modal.style.display = 'flex';
+})
+
+
+// Close modal
+closeBtn.addEventListener('click' , ()=>{
+
+  modal.style.display = 'none';
+})
+
+
+cancelLogout.addEventListener('click' , ()=>{
+
+  modal.style.display = 'none';
+})
+
+
+confirmLogout.addEventListener('click' , ()=>{
+
+  signOut(auth)
+    .then(() => {
+      window.location = "login in.html";
+    })
+
+    .catch((error) => {
+      console.error("Sign out error:", error);
+    });
+
+})
+
+
+window.addEventListener('click' , (event)=>{
+  if (event.target === modal) {
+    modal.style.display = "none";
+  }
+
+})
+    
+
+
+//search functionality started
+
+let filterArray=[];
+
+
+const form = document.querySelector('#search-input');
+const defaultSearch = document.querySelector('#default-search');
+
+form.addEventListener('click' , (e)=>{
+
+  e.preventDefault()
+
+  console.log(defaultSearch.value);
+  
+
+
+})
 
 
 
