@@ -15,6 +15,12 @@ let ads = [] //initialize an array for store ads from the database
 
 
 
+
+
+
+
+
+
 let moreInfo=[]
 
 
@@ -22,7 +28,7 @@ const div = document.querySelector('#div')
 
 
 
-//login button
+// //login button
 
 
  
@@ -48,7 +54,7 @@ querySnapshot.forEach((doc) => {
         tabindex="0"
         class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
         <li>
-          <a class="justify-between">
+          <a class="justify-between" id="showProfileBtn">
             Profile
             <span class="badge">New</span>
           </a>
@@ -59,22 +65,88 @@ querySnapshot.forEach((doc) => {
       </ul>
     </div>`;
 
-  //Logout user
+    //logout user
 
-  document.querySelector("#logout-btn").addEventListener("click", () => {
-    signOut(auth)
-      .then(() => {
-          my_modal_2.showModal();
-        // window.location = "login.html";
+    const LogoutBtn = document.querySelector("#logout-btn");
+    const NoBtn = document.querySelector('#btn-no')
+    const YesBtn = document.querySelector('#btn-yes')
+    
+    
+    LogoutBtn.addEventListener('click' , ()=>{
+      
+      my_modal_3.showModal();
+      
+      YesBtn.addEventListener('click' , ()=>{
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        signOut(auth)
+        .then(() => {
+               my_modal_4.showModal()
+
+
+              setTimeout(()=>{
+                window.location.href="login.html"
+              } , 1000)
+             })
+             .catch((error) => {
+               console.error("Sign out error:", error);
+             });
+    
+        
       })
-      .catch((error) => {
-        alert(err);
-      });
-  });
+
+      NoBtn.addEventListener('click' , ()=>{
+        my_modal_3.style.display="none";
+      })
+
+
+     
+    })
+  
+
+    
+
+
+
+
+    
+
+  
 });
+
+
+
+
+
+
+    
     }    
 
+
+
+
+    
+
+
     getData()
+
+
+
+
+
+//     //Search funtionality
+
+    
+
+    
 
      
 
@@ -86,6 +158,12 @@ querySnapshot.forEach((doc) => {
     
 
   }
+
+
+  
+
+
+ 
 });
 
 
@@ -95,7 +173,7 @@ async function getData(){
   const querySnapshot = await getDocs(collection(db, "user-ads"));
 querySnapshot.forEach((doc) => {
   ads.push(doc.data());
-  console.log(ads);
+  // console.log(ads);
 
   const card = document.querySelector("#div-cards");
 
@@ -105,10 +183,9 @@ querySnapshot.forEach((doc) => {
     card.innerHTML='';
 
     ads.map((item)=>{
-
       card.innerHTML += `<div class="card bg-base-100 w-[20rem] shadow-xl mt-6 border-solid border-[#ced4da] border">
    <figure>
-     <img class="max-w-[100%] h-[320px] object-cover"
+     <img class="w-[100%] h-[320px] object-cover"
        src="${item.productImage}"
       alt="Shoes" />
   </figure>
@@ -123,36 +200,28 @@ querySnapshot.forEach((doc) => {
  </div>`;
 
 
+      const moreInfoBtn = document.querySelectorAll("#more-info-btn");
 
- const moreInfoBtn = document.querySelectorAll("#more-info-btn");
+      moreInfoBtn.forEach((btn, index) => {
+        btn.addEventListener("click", () => {
+          moreInfo = [];
+          moreInfo.push(ads[index]);
 
- moreInfoBtn.forEach((btn, index) => {
-   btn.addEventListener("click", () => {
-    moreInfo=[]
-     moreInfo.push(ads[index]);
+          localStorage.setItem("ads-info", JSON.stringify(moreInfo[0]));
 
-     localStorage.setItem('ads-info' , JSON.stringify(moreInfo[0]))
+          //alert user to login for view more info
 
-     //alert user to login for view more info
+          const loginAlert = document.querySelector("#login-alert");
 
-     const loginAlert = document.querySelector("#login-alert");
-
-     onAuthStateChanged(auth, (user) => {
-      if(user){
-        window.location.href = "more info.html";
-      }else{
-        loginAlert.innerHTML = my_modal_1.showModal()
-      }
-     })
-   });
- });
-
-
-
-     
-      
-      
-
+          onAuthStateChanged(auth, (user) => {
+            if (user) {
+              window.location.href = "more info.html";
+            } else {
+              loginAlert.innerHTML = my_modal_1.showModal();
+            }
+          });
+        });
+      });
     })
 
 
@@ -162,7 +231,7 @@ querySnapshot.forEach((doc) => {
     const okBtn = document.querySelector('#btn-ok');
 
     okBtn.addEventListener('click' , ()=>{
-      window.location.href="login.html"
+      my_modal_1.style.display="none"
     })
 
 
@@ -204,98 +273,27 @@ getData()
 
 
 
+  const showProfileBtn = document.getElementById("showProfileBtn");
+  const profileCard = document.getElementById("profileCard");
 
-//Logout confirmation
-
-
-
- //Logout user
-
-
- const modal = document.getElementById("logoutModal");
- const logoutBtn = document.querySelector("#logout-btn");
- const closeBtn = document.querySelector(".logout-close-btn");
- const confirmLogout = document.getElementById("confirmLogout");
- const cancelLogout = document.getElementById("cancelLogout");
-
-
-
-
-
-// Show modal
-logoutBtn.addEventListener('click' , ()=>{
-
-  modal.style.display = 'flex';
-})
-
-
-// Close modal
-closeBtn.addEventListener('click' , ()=>{
-
-  modal.style.display = 'none';
-})
-
-
-cancelLogout.addEventListener('click' , ()=>{
-
-  modal.style.display = 'none';
-})
-
-
-confirmLogout.addEventListener('click' , ()=>{
-
-  signOut(auth)
-    .then(() => {
-      window.location = "login in.html";
-    })
-
-    .catch((error) => {
-      console.error("Sign out error:", error);
-    });
-
-})
-
-
-window.addEventListener('click' , (event)=>{
-  if (event.target === modal) {
-    modal.style.display = "none";
-  }
-
-})
-    
-
-
-//search functionality started
-
-let filterArray=[];
-
-
-const form = document.querySelector('#search-input');
-const defaultSearch = document.querySelector('#default-search');
-
-form.addEventListener('click' , (e)=>{
-
-  e.preventDefault()
-
-  console.log(defaultSearch.value);
-  
-
-
-})
+  // Add event listener to button click
+  showProfileBtn.addEventListener("click", () => {
+    // Remove hidden class and add fade-in animation
+    if (profileCard.classList.contains("hidden")) {
+      profileCard.classList.remove("hidden");
+      setTimeout(() => {
+        profileCard.classList.add("visible");
+      }, 50); // Timeout to trigger transition smoothly
+    } else {
+      profileCard.classList.remove("visible");
+      setTimeout(() => {
+        profileCard.classList.add("hidden");
+      }, 500); // Allow animation to complete before hiding
+    }
+  });
 
 
 
-
-
-
-
-
-
-
- 
-
- 
- 
   
 
 
@@ -313,4 +311,123 @@ form.addEventListener('click' , (e)=>{
 
 
 
+
+
+  
+
  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

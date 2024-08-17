@@ -57,16 +57,45 @@ onAuthStateChanged(auth, (user) => {
 
         //Logout user
 
-        document.querySelector("#logout-btn").addEventListener("click", () => {
-          signOut(auth)
+        // document.querySelector("#logout-btn").addEventListener("click", () => {
+        //   signOut(auth)
+        //     .then(() => {
+        //       alert("You have sucessfully logout!");
+        //       window.location = "login.html";
+        //     })
+        //     .catch((error) => {
+        //       alert(err);
+        //     });
+        // });
+
+        const LogoutBtn = document.querySelector("#logout-btn");
+        const NoBtn = document.querySelector("#btn-no");
+        const YesBtn = document.querySelector("#btn-yes");
+
+        LogoutBtn.addEventListener("click", () => {
+          my_modal_3.showModal();
+
+          YesBtn.addEventListener("click", () => {
+            signOut(auth)
             .then(() => {
-              alert("You have sucessfully logout!");
-              window.location = "login.html";
-            })
-            .catch((error) => {
-              alert(err);
-            });
+                my_modal_4.showModal();
+
+                setTimeout(() => {
+                  window.location.href = "login.html";
+                }, 3000);
+              })
+              .catch((error) => {
+                console.error("Sign out error:", error);
+              });
+          });
+
+          NoBtn.addEventListener("click", () => {
+            my_modal_3.hideModal()
+          });
         });
+
+
+        
       });
     }
 
@@ -102,10 +131,7 @@ form.addEventListener('submit' , (event)=>{
 
  
   
-postBtn.innerHTML += `<button type="button" class="bg-indigo ..." disabled>
-  <svg class="motion-reduce:hidden animate-spin ..." viewBox="0 0 24 24"><!-- ... --></svg>
-  Processing...
-</button>`;
+postBtn.innerHTML = `<span class="loading loading-lg loading-spinner text-warning"></span>`;
   
 
   //Upload an image to the storage
@@ -148,9 +174,11 @@ postBtn.innerHTML += `<button type="button" class="bg-indigo ..." disabled>
 
    my_modal_2.showModal();
 
+   postBtn.innerHTML = `POST NOW`;
+
    setTimeout(()=>{
     my_modal_2.style.display='none';
-   }, 8000)
+   }, 2000)
 
    
    
@@ -167,7 +195,13 @@ postBtn.innerHTML += `<button type="button" class="bg-indigo ..." disabled>
    delievery.value=""
    condition.value=""
    brand.value=""
-   window.location.href="index.html"
+
+   setTimeout(()=>{
+
+     window.location.href="index.html"
+   } , 2000)
+
+
   } catch (e) {
     console.error("Error adding document: ", e);
 }
