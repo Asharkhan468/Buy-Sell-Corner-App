@@ -11,8 +11,7 @@ let ads = [] //initialize an array for store ads from the database
 
 
 
-
-
+let filterData=[]; // array initailization for search functionality
 
 
 
@@ -140,10 +139,6 @@ querySnapshot.forEach((doc) => {
 
 
 
-
-
-//     //Search funtionality
-
     
 
     
@@ -167,23 +162,35 @@ querySnapshot.forEach((doc) => {
 });
 
 
+//search functionality HTML getting
+
+
+
 
 
 async function getData(){
   const querySnapshot = await getDocs(collection(db, "user-ads"));
 querySnapshot.forEach((doc) => {
   ads.push(doc.data());
-  // console.log(ads);
+
+
+  
+
+
+
+ 
+  
+
 
   const card = document.querySelector("#div-cards");
 
-  card.innerHTML += `<p class="text-[#000]">No Ads Posted</p>`;
-
+  
   function renderCard(){
-    card.innerHTML='';
+    card.innerHTML = "";
 
-    ads.map((item)=>{
-      card.innerHTML += `<div class="card bg-base-100 w-[20rem] shadow-xl mt-6 border-solid border-[#ced4da] border">
+    ads.map((item) => {
+      card.innerHTML += `
+      <div class="card bg-base-100 w-[20rem] shadow-xl mt-6 border-solid border-[#ced4da] border">
    <figure>
      <img class="w-[100%] h-[320px] object-cover"
        src="${item.productImage}"
@@ -197,8 +204,8 @@ querySnapshot.forEach((doc) => {
        <button class="btn btn-secondary" id="more-info-btn">MORE INFO</button>
      </div>
    </div>
- </div>`;
-
+ </div>
+ `;
 
       const moreInfoBtn = document.querySelectorAll("#more-info-btn");
 
@@ -222,34 +229,67 @@ querySnapshot.forEach((doc) => {
           });
         });
       });
-    })
+    });
+
+    // search functionality 
+
+    const searchInput = document.getElementById("search-input");
+
+    searchInput.addEventListener("input", (e) => {
+      const searchValue = e.target.value.toLowerCase();
+      const filteredAds = ads.filter((ad) =>
+        ad.productTitle.toLowerCase().includes(searchValue)
+      );
+      renderCard(filteredAds);
+
+      
+    });
+
+    function renderCard(ads) {
+      card.innerHTML = "";
+      ads.map((item) => {
+       card.innerHTML += `<div class="card bg-base-100 w-[20rem] shadow-xl mt-6 border-solid border-[#ced4da] border">
+   <figure>
+     <img class="w-[100%] h-[320px] object-cover"
+       src="${item.productImage}"
+      alt="Shoes" />
+  </figure>
+   <div class="card-body">
+     <h2 class="card-title">${item.productTitle}</h2>
+     <p>${item.productDescription}</p>
+     <div class="card-actions justify-end">
+       <p class="mt-[10px] font-bold">Rs ${item.productPrice}</p>
+       <button class="btn btn-secondary" id="more-info-btn">MORE INFO</button>
+     </div>
+   </div>
+ </div>`;
+      });
+    }
 
 
+
+
+
+
+    // ... rest of the code remains the same ...
+
+    //search funtionality
 
     //Ok button in the login alert popup functionality started
 
-    const okBtn = document.querySelector('#btn-ok');
+    const okBtn = document.querySelector("#btn-ok");
 
-    okBtn.addEventListener('click' , ()=>{
-      my_modal_1.style.display="none"
-    })
-
-
-
+    okBtn.addEventListener("click", () => {
+      my_modal_1.style.display = "none";
+    });
 
     //Ok button in the login alert popup functionality ended
-
-
-
-
-
-
-    
-
-
   }
 
   renderCard()
+
+
+  
 
 
 
@@ -273,28 +313,34 @@ getData()
 
 
 
-  const showProfileBtn = document.getElementById("showProfileBtn");
-  const profileCard = document.getElementById("profileCard");
 
-  // Add event listener to button click
-  showProfileBtn.addEventListener("click", () => {
-    // Remove hidden class and add fade-in animation
-    if (profileCard.classList.contains("hidden")) {
-      profileCard.classList.remove("hidden");
-      setTimeout(() => {
-        profileCard.classList.add("visible");
-      }, 50); // Timeout to trigger transition smoothly
-    } else {
-      profileCard.classList.remove("visible");
-      setTimeout(() => {
-        profileCard.classList.add("hidden");
-      }, 500); // Allow animation to complete before hiding
-    }
-  });
+
+  // const showProfileBtn = document.getElementById("showProfileBtn");
+  // const profileCard = document.getElementById("profileCard");
+
+  // // Add event listener to button click
+  // showProfileBtn.addEventListener("click", () => {
+  //   // Remove hidden class and add fade-in animation
+  //   if (profileCard.classList.contains("hidden")) {
+  //     profileCard.classList.remove("hidden");
+  //     setTimeout(() => {
+  //       profileCard.classList.add("visible");
+  //     }, 50); // Timeout to trigger transition smoothly
+  //   } else {
+  //     profileCard.classList.remove("visible");
+  //     setTimeout(() => {
+  //       profileCard.classList.add("hidden");
+  //     }, 500); // Allow animation to complete before hiding
+  //   }
+  // });
 
 
 
   
+
+
+
+
 
 
 

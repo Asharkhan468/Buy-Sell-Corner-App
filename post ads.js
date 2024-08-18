@@ -72,27 +72,31 @@ onAuthStateChanged(auth, (user) => {
         const NoBtn = document.querySelector("#btn-no");
         const YesBtn = document.querySelector("#btn-yes");
 
-        LogoutBtn.addEventListener("click", () => {
-          my_modal_3.showModal();
+       
 
-          YesBtn.addEventListener("click", () => {
-            signOut(auth)
-            .then(() => {
-                my_modal_4.showModal();
 
-                setTimeout(() => {
-                  window.location.href = "login.html";
-                }, 3000);
-              })
-              .catch((error) => {
-                console.error("Sign out error:", error);
-              });
-          });
+         LogoutBtn.addEventListener("click", () => {
+           my_modal_3.showModal();
 
-          NoBtn.addEventListener("click", () => {
-            my_modal_3.hideModal()
-          });
-        });
+           YesBtn.addEventListener("click", () => {
+             signOut(auth)
+               .then(() => {
+                 my_modal_4.showModal();
+
+
+                 setTimeout(() => {
+                   window.location.href = "login.html";
+                 }, 1000);
+               })
+               .catch((error) => {
+                 console.error("Sign out error:", error);
+               });
+           });
+
+           NoBtn.addEventListener("click", () => {
+             my_modal_3.style.display = "none";
+           });
+         });
 
 
         
@@ -171,13 +175,23 @@ postBtn.innerHTML = `<span class="loading loading-lg loading-spinner text-warnin
   
    console.log("Document written with ID: ", docRef.id);
 
+    const dialog = document.getElementById("my_modal_2");
+    const audio = document.getElementById("success-audio");
 
-   my_modal_2.showModal();
+    audio.play();
+    dialog.showModal();
+
+  //  my_modal_2.showModal();
 
    postBtn.innerHTML = `POST NOW`;
 
+
+
    setTimeout(()=>{
     my_modal_2.style.display='none';
+
+   
+
    }, 2000)
 
    

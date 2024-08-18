@@ -44,20 +44,15 @@
      
      <!--search button started--> 
 
-     <!-- <div class="text-center mx-[12px] mt-[6px]">
-      <input
-  type="text"
- placeholder="Search" 
-  class="input input-bordered input-[#fff8] w-full max-w-3xl mt-8" /> <button class="btn btn-info bg-[#3869fe] text-[#fff]">Search</button>
-
-     </div> -->
 
 
 
      <div>
+
+      <!-- max-w-full sm: max-w-xl md: max-w-xl lg: max-w-xs mt-3 mx-[20px] -->
       
-<form class="max-w-xl sm: max-w-4xl md: max-w-4xl lg: max-w-4xl mt-3 mx-auto" id="search-input">   
-    <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+<form class="w-full flex justify-center mt-6 max-w-full pl-[15px] pr-[15px]" id="search-input">   
+    <!-- <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
     <div class="relative">
         <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
             <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
@@ -65,8 +60,10 @@
             </svg>
         </div>
         <input type="search" id="default-search" class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search..." required />
-        <button type="submit" class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
-    </div>
+        
+    </div> -->
+
+    <input type="text" placeholder="Search..." class="input input-bordered input-[#343a40] w-full max-w-7xl" />
 </form>
 
      </div>
@@ -94,11 +91,19 @@
 
         
 
-        <div class="flex justify-between mt-[40px] flex-wrap items-center sm:mx-[60px]  mx-[20px]">
+        <div class="flex justify-center mt-[40px] flex-wrap items-center sm:mx-[60px]  mx-[20px]">
 
-           <div id="div-cards" class="flex justify-around flex-wrap ">
+           <div id="div-cards" class="flex justify-center gap-[50px] flex-wrap">
+
+            <div class="items-center mt-8">
+              <span class="loading loading-lg loading-spinner text-warning"></span>
+
+            </div>
+      
+
 
 </div>
+
 
 
    
@@ -211,34 +216,7 @@
                   <!-- logout popup ended -->
 
 
-                  <!-- user profile started -->
-
-                  <div id="profileCard" class="hidden card w-96 bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-xl rounded-lg p-6 fade-in">
-        <figure class="px-10 pt-10">
-            <img src="https://i.pravatar.cc/150?img=3" alt="User Image" class="rounded-full border-4 border-gray-800 w-32 h-32 object-cover" />
-        </figure>
-        <div class="card-body items-center text-center">
-            <h2 class="card-title text-2xl font-bold">Ashar Khan</h2>
-            <p class="text-lg">ashar.khan@example.com</p>
-            <div class="card-actions mt-4">
-                <button class="btn btn-primary btn-wide bg-blue-500 hover:bg-blue-600 text-white">View Profile</button>
-            </div>
-        </div>
-    </div>
-                  <!-- user profile ended -->
-
-
-
-         
-
-
-
-
-       
-
-
-
-
+                 
 
 
 
