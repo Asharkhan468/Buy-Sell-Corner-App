@@ -55,18 +55,7 @@ onAuthStateChanged(auth, (user) => {
       </ul>
     </div>`;
 
-        //Logout user
-
-        // document.querySelector("#logout-btn").addEventListener("click", () => {
-        //   signOut(auth)
-        //     .then(() => {
-        //       alert("You have sucessfully logout!");
-        //       window.location = "login.html";
-        //     })
-        //     .catch((error) => {
-        //       alert(err);
-        //     });
-        // });
+        
 
         const LogoutBtn = document.querySelector("#logout-btn");
         const NoBtn = document.querySelector("#btn-no");
@@ -148,14 +137,12 @@ postBtn.innerHTML = `<span class="loading loading-lg loading-spinner text-warnin
 
   uploadBytes(storageRef, adImage.files[0])
   .then((snapshot) => {
-    console.log("Image uploded sucessfully to the storage!");
     adImage.value = "";
 
     //get the link of uploaded image
 
     getDownloadURL(ref(storageRef))
       .then((url) => {
-        console.log("url==>", url);
 
         async function setData(){
           try {

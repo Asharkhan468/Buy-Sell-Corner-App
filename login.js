@@ -37,7 +37,7 @@ form.addEventListener("submit", (event) => {
         <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4M20 12A8 8 0 118 4.929M12 20h.01" />
       </svg>
       <h2 class="text-3xl font-bold tracking-wider">Success!</h2>
-      <p class="text-center text-lg">You've logged in successfully.</p>
+      <p class="text-center text-lg">You've logged in Successfully.</p>
     </div>
 
   <!-- Sound Trigger -->
@@ -72,6 +72,9 @@ setTimeout(()=>{
   </svg>
   <span>Invalid Login Credential!</span>
 </div>`;
+
+email.value=""
+password.value=""
       
     });
 
