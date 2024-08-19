@@ -53,7 +53,7 @@ querySnapshot.forEach((doc) => {
         tabindex="0"
         class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
         <li>
-          <a class="justify-between" id="showProfileBtn">
+          <a id="profileBtn">
             Profile
             <span class="badge">New</span>
           </a>
@@ -71,44 +71,80 @@ querySnapshot.forEach((doc) => {
     const YesBtn = document.querySelector('#btn-yes')
     
     
-    LogoutBtn.addEventListener('click' , ()=>{
-      
+    LogoutBtn.addEventListener("click", () => {
       my_modal_3.showModal();
-      
-      YesBtn.addEventListener('click' , ()=>{
 
-        
-        
-        
-        
-        
-        
-        
-        
-        
+      YesBtn.addEventListener("click", () => {
         signOut(auth)
-        .then(() => {
-               my_modal_4.showModal()
+          .then(() => {
+            my_modal_4.showModal();
 
+            setTimeout(() => {
+              window.location.href = "login.html";
+            }, 1000);
+          })
+          .catch((error) => {
+            console.error("Sign out error:", error);
+          });
+      });
 
-              setTimeout(()=>{
-                window.location.href="login.html"
-              } , 1000)
-             })
-             .catch((error) => {
-               console.error("Sign out error:", error);
-             });
-    
-        
-      })
-
-      NoBtn.addEventListener('click' , ()=>{
-        my_modal_3.style.display="none";
-      })
-
-
-     
+      NoBtn.addEventListener("click", () => {
+        my_modal_3.style.display = "none";
+      });
     })
+
+    const userProfile = document.querySelector(
+      "#profile-section"
+    )
+
+
+    userProfile.innerHTML = `<div id="profileSection" class="hidden fixed inset-0 flex items-center justify-center z-50 max-w-9xl">
+    <div class="bg-gradient-to-r bg-[#343a40] p-8 rounded-lg shadow-lg text-white">
+      <div class="flex flex-col items-center space-y-4 ">
+
+      <div class="avatar mx-auto mb-4">
+  <div class="w-28 rounded-full">
+    <img src="${doc.data().userImage}" alt="User Image">
+  </div>
+</div>
+
+        
+        <h2 class="text-2xl font-bold">${doc.data().userName}</h2>
+        <p class="text-sm opacity-80">${doc.data().userEmail}</p>
+        <button id="closeProfile" class="btn btn-accent mt-4">Close</button>
+      </div>
+    </div>
+  </div>`;
+
+
+  // <img src="${
+  //         doc.data().userImage
+  //       }" alt="User Image" class="w-29 h-28 shadow-lg"></img>
+    
+    
+    
+    
+    
+    
+    
+
+
+      
+const profileBtn = document.getElementById("profileBtn");
+const profileSection = document.getElementById("profileSection");
+const closeProfile = document.getElementById("closeProfile");
+
+profileBtn.addEventListener("click", () => {
+  profileSection.classList.remove("hidden");
+  profileSection.classList.add("flex");
+});
+
+closeProfile.addEventListener("click", () => {
+  profileSection.classList.add("hidden");
+  profileSection.classList.remove("flex");
+});
+
+
   
 
     
@@ -319,9 +355,6 @@ getData()
 
  
 
-
-
-  
 
 
 
